@@ -65,7 +65,7 @@ export default async function ChapeletTypePage({
         <h1 className="text-lg font-semibold">{TYPE_LABELS[type]}</h1>
       </div>
 
-      {introduction && (
+      {introduction != null && (
         <blockquote className="border-l-2 border-white/20 pl-4 mb-8 text-sm font-serif text-white/60 italic leading-relaxed">
           <IntroText content={introduction} />
         </blockquote>

@@ -76,7 +76,7 @@ export default async function SaintPage({
         <img src={imageUrl} alt={saint.name} className="w-full rounded-xl mb-6 object-cover max-h-64" />
       )}
 
-      {saint.description && (
+      {saint.description != null && (
         <div className="prose prose-invert prose-sm max-w-none font-serif mb-8 text-white/70">
           <DescriptionText content={saint.description} />
         </div>
