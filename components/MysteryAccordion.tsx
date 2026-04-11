@@ -1,0 +1,68 @@
+'use client'
+import { useState } from 'react'
+import { ReadingPicker } from './ReadingPicker'
+
+type Reading = {
+  source_key: string
+  source_label: string
+  content: unknown
+}
+
+type Mystery = {
+  id: string | number
+  name: string
+  fruit: string
+  readings?: Reading[]
+  audio_meditation?: unknown
+}
+
+// Exported for testing
+export function filterReadings(readings: Reading[], allowedSources: string[]): Reading[] {
+  return readings.filter(r => allowedSources.includes(r.source_key))
+}
+
+export function MysteryAccordion({
+  mystery,
+  allowedSources,
+  index,
+}: {
+  mystery: Mystery
+  allowedSources: string[]
+  index: number
+}) {
+  const [open, setOpen] = useState(false)
+  const visibleReadings = filterReadings(mystery.readings ?? [], allowedSources)
+
+  const audioUrl = mystery.audio_meditation !== null && mystery.audio_meditation !== undefined
+    ? (mystery.audio_meditation as { url?: string }).url
+    : undefined
+
+  return (
+    <div className="border border-white/10 rounded-xl overflow-hidden">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors"
+      >
+        <div>
+          <div className="font-medium">
+            {index}. {mystery.name}
+          </div>
+          <div className="text-xs text-white/40 mt-0.5">Fruit : {mystery.fruit}</div>
+        </div>
+        <span className="text-white/30 ml-4">{open ? '▼' : '›'}</span>
+      </button>
+
+      {open && (
+        <div className="border-t border-white/10 p-4">
+          <ReadingPicker readings={visibleReadings} />
+          {audioUrl && (
+            <div className="mt-4">
+              <p className="text-xs text-white/40 mb-1">▶ Méditation audio</p>
+              <audio controls src={audioUrl} className="w-full" />
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
