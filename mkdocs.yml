@@ -1,0 +1,31 @@
+site_name: Sainteté — Docs
+site_url: https://dorianhgn.github.io/app_saintete
+repo_url: https://github.com/Dorianhgn/app_saintete
+repo_name: Dorianhgn/app_saintete
+
+theme:
+  name: material
+  palette:
+    scheme: slate
+    primary: deep orange
+    accent: deep orange
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Getting started: getting-started.md
+  - Architecture: architecture.md
+  - Data model: data-model.md
+  - Content management: content-management.md
+  - Deployment: deployment.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - tables
