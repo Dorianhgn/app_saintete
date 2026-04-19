@@ -34,9 +34,9 @@ export default async function SaintPage({
 
   if (!patronSaint) {
     return (
-      <main className="max-w-md mx-auto px-4 py-8 text-center text-white/40">
+      <main className="max-w-md mx-auto px-4 py-8 text-center text-[var(--text-muted)]">
         <p>Aucun saint patron assigné.</p>
-        <Link href={`/${slug}/${token}`} className="text-xs mt-4 block hover:text-white/60">← Retour</Link>
+        <Link href={`/${slug}/${token}`} className="text-xs mt-4 block text-[var(--text-muted)] hover:text-[var(--text)]">← Retour</Link>
       </main>
     )
   }
@@ -61,12 +61,12 @@ export default async function SaintPage({
   return (
     <main className="max-w-md mx-auto px-4 py-8">
       <div className="mb-6 flex items-center gap-3">
-        <Link href={`/${slug}/${token}`} className="text-white/40 hover:text-white/70">←</Link>
-        <h1 className="text-lg font-semibold">{saint.name}</h1>
+        <Link href={`/${slug}/${token}`} className="text-[var(--text-muted)] hover:text-[var(--text)]">←</Link>
+        <h1 className="text-lg font-semibold text-[var(--text)]">{saint.name}</h1>
       </div>
 
       {isFeastDay && (
-        <div className="mb-4 rounded-xl border border-yellow-500/50 bg-yellow-950/30 p-3 text-center text-yellow-300 text-sm">
+        <div className="mb-4 rounded-xl border border-[var(--accent)]/50 bg-[var(--bg-muted)] p-3 text-center text-[var(--accent)] text-sm">
           ✦ Fête de {saint.name} aujourd&apos;hui
         </div>
       )}
@@ -77,14 +77,14 @@ export default async function SaintPage({
       )}
 
       {saint.description != null && (
-        <div className="prose prose-invert prose-sm max-w-none font-serif mb-8 text-white/70">
+        <div className="prose prose-sm max-w-none font-serif mb-8 text-[var(--text-muted)]">
           <DescriptionText content={saint.description} />
         </div>
       )}
 
       {prayers.length > 0 && (
         <section>
-          <h2 className="text-xs uppercase tracking-widest text-white/40 mb-3">Prières</h2>
+          <h2 className="text-xs uppercase tracking-widest text-[var(--text-muted)] mb-3">Prières</h2>
           <div className="flex flex-col gap-2">
             {prayers.map(p => <PrayerItem key={p.id} prayer={p} />)}
           </div>

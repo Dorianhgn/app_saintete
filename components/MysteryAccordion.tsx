@@ -16,7 +16,6 @@ type Mystery = {
   audio_meditation?: unknown
 }
 
-// Exported for testing
 export function filterReadings(readings: Reading[], allowedSources: string[]): Reading[] {
   return readings.filter(r => allowedSources.includes(r.source_key))
 }
@@ -38,26 +37,26 @@ export function MysteryAccordion({
     : undefined
 
   return (
-    <div className="border border-white/10 rounded-xl overflow-hidden">
+    <div className="border border-[var(--border)] rounded-xl overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors"
+        className="w-full flex justify-between items-center p-4 text-left hover:bg-[var(--bg-muted)] transition-colors"
       >
         <div>
-          <div className="font-medium">
+          <div className="font-medium text-[var(--text)]">
             {index}. {mystery.name}
           </div>
-          <div className="text-xs text-white/40 mt-0.5">Fruit : {mystery.fruit}</div>
+          <div className="text-xs text-[var(--text-muted)] mt-0.5">Fruit : {mystery.fruit}</div>
         </div>
-        <span className="text-white/30 ml-4">{open ? '▼' : '›'}</span>
+        <span className="text-[var(--text-muted)] ml-4">{open ? '▼' : '›'}</span>
       </button>
 
       {open && (
-        <div className="border-t border-white/10 p-4">
+        <div className="border-t border-[var(--border)] p-4">
           <ReadingPicker readings={visibleReadings} />
           {audioUrl && (
             <div className="mt-4">
-              <p className="text-xs text-white/40 mb-1">▶ Méditation audio</p>
+              <p className="text-xs text-[var(--text-muted)] mb-1">▶ Méditation audio</p>
               <audio controls src={audioUrl} className="w-full" />
             </div>
           )}

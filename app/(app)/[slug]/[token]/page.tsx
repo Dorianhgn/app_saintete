@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import { resolveGodchild } from '@/lib/auth'
 import { getPayloadClient } from '@/lib/payload'
 import { BriqueCard } from '@/components/BriqueCard'
-import { ReactionStrip } from '@/components/ReactionStrip'
 import { NavGrid } from '@/components/NavGrid'
+import { PinnedPrayers } from '@/components/PinnedPrayers'
 import type { Brique } from '@/payload-types'
 
 export default async function DashboardPage({
@@ -43,20 +44,19 @@ export default async function DashboardPage({
 
   return (
     <main className="max-w-md mx-auto px-4 py-8">
-      <div className="mb-6 text-white/40 text-sm">
+      <div className="mb-6 text-[var(--text-muted)] text-sm">
         Bonjour, {godchild.name} ✝
       </div>
 
       {latestBrique ? (
         <>
-          <BriqueCard brique={latestBrique} />
-          <ReactionStrip
-            briqueId={latestBrique.id}
-            godchildId={godchild.id}
-          />
+          <Link href={`/${slug}/${token}/briques/${latestBrique.id}`}>
+            <BriqueCard brique={latestBrique} />
+          </Link>
+          <p className="text-xs text-[var(--text-muted)] mt-2 text-right">Lire et réagir →</p>
         </>
       ) : (
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-center text-white/40">
+        <div className="border border-[var(--border)] bg-[var(--bg-card)] rounded-2xl p-6 text-center text-[var(--text-muted)]">
           <p className="font-serif text-lg">
             {patronSaint?.name
               ? `Que ${patronSaint.name} t'accompagne.`
@@ -64,6 +64,8 @@ export default async function DashboardPage({
           </p>
         </div>
       )}
+
+      <PinnedPrayers slug={slug} token={token} />
 
       <NavGrid
         slug={slug}
@@ -74,7 +76,7 @@ export default async function DashboardPage({
       <div className="mt-4 text-center">
         <a
           href={`/${slug}/${token}/briques`}
-          className="text-xs text-white/30 hover:text-white/50"
+          className="text-xs text-[var(--text-muted)] hover:text-[var(--text)]"
         >
           Voir toutes les briques →
         </a>

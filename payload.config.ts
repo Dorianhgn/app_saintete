@@ -10,6 +10,8 @@ import { Prayers } from './collections/Prayers'
 import { Mysteries } from './collections/Mysteries'
 import { Briques } from './collections/Briques'
 import { Feedback } from './collections/Feedback'
+import { PrayerCategories } from './collections/PrayerCategories'
+import { PrayerPageConfig } from './globals/PrayerPageConfig'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -23,6 +25,7 @@ export default buildConfig({
     Mysteries,
     Briques,
     Feedback,
+    PrayerCategories,
     {
       slug: 'media',
       upload: {
@@ -36,6 +39,7 @@ export default buildConfig({
       fields: [],
     },
   ],
+  globals: [PrayerPageConfig],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET ?? (() => { throw new Error('PAYLOAD_SECRET is required') })(),
   typescript: {

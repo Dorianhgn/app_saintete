@@ -52,19 +52,19 @@ export default async function BriquesPage({
   return (
     <main className="max-w-md mx-auto px-4 py-8">
       <div className="mb-6 flex items-center gap-3">
-        <Link href={`/${slug}/${token}`} className="text-white/40 hover:text-white/70">←</Link>
-        <h1 className="text-lg font-semibold">Briques</h1>
+        <Link href={`/${slug}/${token}`} className="text-[var(--text-muted)] hover:text-[var(--text)]">←</Link>
+        <h1 className="text-lg font-semibold text-[var(--text)]">Briques</h1>
       </div>
 
       {briques.length === 0 && (
-        <p className="text-white/40 text-sm">Aucune brique publiée pour l&apos;instant.</p>
+        <p className="text-[var(--text-muted)] text-sm">Aucune brique publiée pour l&apos;instant.</p>
       )}
 
       <div className="flex flex-col gap-4">
         {briques.map(b => (
           <div key={b.id} className="relative">
             {!readMap.has(b.id) && (
-              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-violet-500 z-10" />
+              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[var(--accent)] z-10" />
             )}
             <BriqueCard brique={b} />
           </div>

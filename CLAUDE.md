@@ -8,6 +8,27 @@ Design spec: `docs/superpowers/specs/2026-04-11-saintete-design.md`
 
 ---
 
+## Commands
+
+```bash
+npm run dev    # Start dev server (Next.js + Payload CMS) on localhost:3000
+npm run build  # Production build
+npm test       # Jest (tests in __tests__/)
+npm run lint   # ESLint
+```
+
+## Required env vars
+
+| Variable | Source |
+|---|---|
+| `DATABASE_URI` | Neon Postgres connection string |
+| `PAYLOAD_SECRET` | Random secret — generate with `openssl rand -hex 32` |
+| `VAPID_SUBJECT` | `mailto:your@email.com` |
+| `VAPID_PUBLIC_KEY` | Generate with `npx web-push generate-vapid-keys` |
+| `VAPID_PRIVATE_KEY` | Same command above |
+
+---
+
 ## Stack
 
 - **Next.js 15 App Router** + **Payload CMS v3** — single Vercel deployment, no separate CMS server
@@ -38,16 +59,34 @@ Each reading has `source_key` (e.g. `"st-luc"`) and `source_label`. At render ti
 
 ---
 
+## Key files
+
+| File | Role |
+|---|---|
+| `middleware.ts` | Edge token check (length only — no DB) |
+| `app/(app)/[slug]/[token]/layout.tsx` | Full DB validation (Node runtime) |
+| `payload.config.ts` | CMS config — all 6 collections registered here |
+| `lib/auth.ts` | `resolveGodchild()` — triple-condition DB lookup |
+| `lib/push.ts` | Web Push sender — requires VAPID env vars |
+
+---
+
 ## URL structure
 
+Routes live under `app/(app)/` route group. URLs remain:
+
 ```
-/[slug]/[token]              Dashboard (brique-first)
+/[slug]/[token]              Dashboard — app/(app)/[slug]/[token]/page.tsx
 /[slug]/[token]/chapelet     Rosary
 /[slug]/[token]/prieres      Prayer library
 /[slug]/[token]/saint        Patron saint
 /[slug]/[token]/briques      All briques archive
-/admin                       Payload admin
+/admin                       Payload admin (app/(payload)/)
 ```
+
+## Middleware gotcha
+
+`middleware.ts` runs on **edge runtime** — no Node, no Payload local API. It only checks `token.length >= 16`. Full godchild DB lookup is in `app/(app)/[slug]/[token]/layout.tsx` (Node runtime). Never add DB calls to middleware.
 
 ---
 

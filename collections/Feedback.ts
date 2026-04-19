@@ -16,6 +16,7 @@ export const Feedback: CollectionConfig = {
       ],
     },
     { name: 'message', type: 'text' },
+    { name: 'comment', type: 'text' },
     { name: 'read_at', type: 'date' },
   ],
 }

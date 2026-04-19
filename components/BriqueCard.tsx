@@ -1,27 +1,14 @@
 import type { Brique } from '@/payload-types'
-
-function RichText({ content }: { content: unknown }) {
-  const c = content as { root?: { children?: Array<{ type: string; children?: Array<{ text: string }> }> } }
-  if (!c?.root?.children) return null
-  return (
-    <div>
-      {c.root.children.map((node, i) => {
-        if (node.type === 'paragraph') {
-          return <p key={i}>{node.children?.map((child) => child.text).join('')}</p>
-        }
-        return null
-      })}
-    </div>
-  )
-}
+import { RichText } from '@payloadcms/richtext-lexical/react'
+import type { SerializedEditorState } from 'lexical'
 
 export function BriqueCard({ brique }: { brique: Brique }) {
   return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 p-6">
-      <div className="mb-1 text-xs uppercase tracking-widest text-white/40">
+    <div className="rounded-2xl border border-[var(--border)] border-l-[3px] border-l-[var(--liturgy)] bg-[var(--bg-card)] p-6 rounded-[0_10px_10px_0]">
+      <div className="mb-1 text-xs uppercase tracking-widest text-[var(--accent)]">
         ✦ Brique du jour
       </div>
-      <h2 className="mb-4 text-xl font-serif font-semibold">{brique.title}</h2>
+      <h2 className="mb-4 text-xl font-serif font-semibold text-[var(--text)]">{brique.title}</h2>
       {brique.type === 'audio' && brique.audio_file ? (
         <audio
           controls
@@ -29,9 +16,10 @@ export function BriqueCard({ brique }: { brique: Brique }) {
           className="w-full"
         />
       ) : (
-        <div className="prose prose-invert prose-sm max-w-none font-serif">
-          <RichText content={brique.content} />
-        </div>
+        <RichText
+          data={brique.content as unknown as SerializedEditorState}
+          className="prose prose-sm max-w-none font-serif text-[var(--text)]"
+        />
       )}
     </div>
   )

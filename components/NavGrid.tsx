@@ -21,10 +21,10 @@ export function NavGrid({
         <Link
           key={href}
           href={href}
-          className="flex flex-col items-center gap-2 rounded-xl border border-white/10 bg-white/5 p-4 hover:bg-white/10 transition-colors"
+          className="flex flex-col items-center gap-2 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-4 hover:bg-[var(--bg-muted)] transition-colors"
         >
           <span className="text-2xl">{icon}</span>
-          <span className="text-xs text-white/70">{label}</span>
+          <span className="text-xs text-[var(--text-muted)]">{label}</span>
         </Link>
       ))}
     </div>

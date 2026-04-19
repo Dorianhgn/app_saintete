@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
-import { Geist } from 'next/font/google'
-import './globals.css'
+import { Cormorant_Garamond } from 'next/font/google'
+import '../globals.css'
 
-const geist = Geist({ subsets: ['latin'] })
+const cormorant = Cormorant_Garamond({ subsets: ['latin'], weight: ['400', '500', '600', '700'] })
 
 export const metadata: Metadata = {
   title: 'Sainteté',
@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className="dark">
-      <body className={`${geist.className} bg-gray-950 text-gray-100 min-h-screen`}>
+    <html lang="fr">
+      <body className={`${cormorant.className} min-h-screen`}>
         {children}
       </body>
     </html>

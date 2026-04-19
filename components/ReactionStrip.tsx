@@ -17,7 +17,7 @@ export function ReactionStrip({
   const [selected, setSelected] = useState<string | null>(null)
 
   async function handleReaction(key: string) {
-    if (selected) return // one reaction per brique
+    if (selected) return
     setSelected(key)
     await fetch('/api/feedback/read', {
       method: 'POST',
@@ -33,9 +33,9 @@ export function ReactionStrip({
           key={key}
           onClick={() => handleReaction(key)}
           disabled={!!selected}
-          className={`text-3xl transition-transform hover:scale-125 disabled:opacity-40 ${
-            selected === key ? 'scale-125' : ''
-          }`}
+          className={`text-3xl transition-transform hover:scale-125 text-[var(--text)] ${
+            selected === key ? 'opacity-100 scale-125' : 'opacity-60'
+          } disabled:cursor-default`}
           aria-label={key}
         >
           {emoji}

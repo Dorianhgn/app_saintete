@@ -1,40 +1,85 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { Prayer } from '@/payload-types'
 
-function RichText({ content }: { content: unknown }) {
-  const c = content as { root?: { children?: Array<{ type: string; children?: Array<{ text: string }> }> } }
-  if (!c?.root?.children) return null
-  return (
-    <div className="prose prose-invert prose-sm max-w-none font-serif">
-      {c.root.children.map((node, i) => (
-        node.type === 'paragraph'
-          ? <p key={i}>{node.children?.map((child) => child.text).join('')}</p>
-          : null
-      ))}
-    </div>
-  )
+import { RichText } from '@payloadcms/richtext-lexical/react'
+
+const PINNED_KEY = 'saintete-pinned'
+const MAX_PINS = 2
+
+function getPinned(slug: string): string[] {
+  try {
+    const raw = localStorage.getItem(`${PINNED_KEY}-${slug}`)
+    return raw ? (JSON.parse(raw) as string[]) : []
+  } catch {
+    return []
+  }
 }
 
-export function PrayerItem({ prayer }: { prayer: Prayer }) {
+function setPinned(slug: string, ids: string[]) {
+  try {
+    localStorage.setItem(`${PINNED_KEY}-${slug}`, JSON.stringify(ids))
+  } catch {
+  }
+}
+
+export function PrayerItem({ prayer, slug }: { prayer: Prayer; slug?: string }) {
   const [open, setOpen] = useState(false)
+  const [pinned, setPinnedState] = useState(false)
+
+  useEffect(() => {
+    if (!slug) return
+    const ids = getPinned(slug)
+    setPinnedState(ids.includes(String(prayer.id)))
+  }, [slug, prayer.id])
+
+  function togglePin(e: React.MouseEvent) {
+    e.stopPropagation()
+    if (!slug) return
+    const ids = getPinned(slug)
+    const id = String(prayer.id)
+    if (ids.includes(id)) {
+      const next = ids.filter((x) => x !== id)
+      setPinned(slug, next)
+      setPinnedState(false)
+    } else {
+      const next = ids.length >= MAX_PINS ? [...ids.slice(1), id] : [...ids, id]
+      setPinned(slug, next)
+      setPinnedState(true)
+    }
+  }
 
   const audioUrl = prayer.audio !== null && prayer.audio !== undefined && typeof prayer.audio === 'object'
     ? (prayer.audio as { url?: string }).url
     : undefined
 
   return (
-    <div className="border border-white/10 rounded-xl overflow-hidden">
+    <div className="border border-[var(--border)] rounded-xl overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex justify-between items-center p-4 text-left hover:bg-white/5 transition-colors"
+        className="w-full flex justify-between items-center p-4 text-left hover:bg-[var(--bg-muted)] transition-colors"
       >
-        <span className="font-medium">{prayer.title}</span>
-        <span className="text-white/30">{open ? '▼' : '›'}</span>
+        <span className="font-medium text-[var(--text)]">{prayer.title}</span>
+        <span className="flex items-center gap-2">
+          {slug && (
+            <span
+              role="button"
+              onClick={togglePin}
+              className={pinned ? 'text-base' : 'text-base opacity-40'}
+              aria-label={pinned ? 'Désépingler' : 'Épingler'}
+            >
+              📌
+            </span>
+          )}
+          <span className="text-[var(--text-muted)]">{open ? '▼' : '›'}</span>
+        </span>
       </button>
       {open && (
-        <div className="border-t border-white/10 p-4">
-          <RichText content={prayer.content} />
+        <div className="border-t border-[var(--border)] p-4">
+          <RichText
+            data={prayer.content as any}
+            className="prose prose-sm max-w-none font-serif text-[var(--text)]"
+          />
           {audioUrl && (
             <audio controls src={audioUrl} className="w-full mt-4" />
           )}
