@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import type { Prayer } from '@/payload-types'
 
 import { RichText } from '@payloadcms/richtext-lexical/react'
+import { appConverters } from '@/lib/richTextConverters'
 
 const PINNED_KEY = 'saintete-pinned'
 const MAX_PINS = 2
@@ -79,6 +80,7 @@ export function PrayerItem({ prayer, slug }: { prayer: Prayer; slug?: string }) 
           <RichText
             data={prayer.content as any}
             className="prose prose-sm max-w-none font-serif text-[var(--text)]"
+            converters={appConverters}
           />
           {audioUrl && (
             <audio controls src={audioUrl} className="w-full mt-4" />

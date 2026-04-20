@@ -3,6 +3,7 @@ import { resolveGodchild } from '@/lib/auth'
 import { getPayloadClient } from '@/lib/payload'
 import Link from 'next/link'
 import { RichText } from '@payloadcms/richtext-lexical/react'
+import { appConverters } from '@/lib/richTextConverters'
 
 export default async function CatechesePage({
   params,
@@ -23,7 +24,7 @@ export default async function CatechesePage({
         <h1 className="text-lg font-semibold text-[var(--text)]">{config?.catechese_title ?? "Qu'est-ce que la prière ?"}</h1>
       </div>
       <div className="font-serif text-[var(--text)] leading-relaxed prose prose-sm max-w-none">
-        {config?.catechese_content && <RichText data={config.catechese_content as any} disableContainer />}
+        {config?.catechese_content && <RichText data={config.catechese_content as any} disableContainer converters={appConverters} />}
       </div>
     </main>
   )

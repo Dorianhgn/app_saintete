@@ -3,6 +3,7 @@ import { resolveGodchild } from '@/lib/auth'
 import { getPayloadClient } from '@/lib/payload'
 import Link from 'next/link'
 import { RichText } from '@payloadcms/richtext-lexical/react'
+import { appConverters } from '@/lib/richTextConverters'
 
 export default async function PrieresPage({
   params,
@@ -38,7 +39,7 @@ export default async function PrieresPage({
 
       {config?.intro_text && (
         <div className="border-l-4 border-[var(--border)] pl-4 mb-6 italic text-[var(--text-muted)] font-serif text-sm">
-          <RichText data={config.intro_text as any} disableContainer />
+          <RichText data={config.intro_text as any} disableContainer converters={appConverters} />
         </div>
       )}
 

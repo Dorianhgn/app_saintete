@@ -5,6 +5,7 @@ import Link from 'next/link'
 import type { Brique } from '@/payload-types'
 import { BriqueDetailFeedback } from './BriqueDetailFeedback'
 import { RichText } from '@payloadcms/richtext-lexical/react'
+import { appConverters } from '@/lib/richTextConverters'
 
 export default async function BriqueDetailPage({
   params,
@@ -48,6 +49,7 @@ export default async function BriqueDetailPage({
         <RichText
           data={brique.content as any}
           className="font-serif leading-relaxed flex flex-col gap-3"
+          converters={appConverters}
         />
       </div>
 

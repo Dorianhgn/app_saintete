@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { RichText } from '@payloadcms/richtext-lexical/react'
+import { appConverters } from '@/lib/richTextConverters'
 
 type Reading = {
   source_key: string
@@ -39,6 +40,7 @@ export function ReadingPicker({ readings }: { readings: Reading[] }) {
           <RichText
             data={selectedReading.content as any}
             className="prose prose-sm max-w-none font-serif text-[var(--text)]"
+            converters={appConverters}
           />
         </div>
       )}
