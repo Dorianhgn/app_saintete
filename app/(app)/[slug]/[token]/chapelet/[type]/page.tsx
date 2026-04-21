@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation'
 import { resolveGodchild } from '@/lib/auth'
 import { getPayloadClient } from '@/lib/payload'
 import { MysteryAccordion } from '@/components/MysteryAccordion'
+import { RichText } from '@payloadcms/richtext-lexical/react'
+import { appConverters } from '@/lib/richTextConverters'
 import Link from 'next/link'
 import type { Mystery } from '@/payload-types'
 
@@ -10,20 +12,6 @@ const TYPE_LABELS: Record<string, string> = {
   douloureux: 'Mystères Douloureux',
   glorieux:   'Mystères Glorieux',
   lumineux:   'Mystères Lumineux',
-}
-
-function IntroText({ content }: { content: unknown }) {
-  const c = content as { root?: { children?: Array<{ type: string; children?: Array<{ text: string }> }> } }
-  if (!c?.root?.children) return null
-  return (
-    <>
-      {c.root.children.map((node, i) => (
-        node.type === 'paragraph'
-          ? <p key={i} className="mb-2">{node.children?.map((child) => child.text).join('')}</p>
-          : null
-      ))}
-    </>
-  )
 }
 
 export default async function ChapeletTypePage({
@@ -65,9 +53,9 @@ export default async function ChapeletTypePage({
       </div>
 
       {introduction != null && (
-        <blockquote className="border-l-2 border-l-[var(--liturgy)] pl-4 mb-8 text-sm font-serif text-[var(--text-muted)] italic leading-relaxed">
-          <IntroText content={introduction} />
-        </blockquote>
+        <div className="border-l-2 border-l-[var(--liturgy)] pl-4 mb-8 text-sm font-serif text-[var(--text-muted)] italic leading-relaxed">
+          <RichText data={introduction as any} disableContainer converters={appConverters} />
+        </div>
       )}
 
       <div className="flex flex-col gap-3">

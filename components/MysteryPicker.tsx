@@ -19,30 +19,30 @@ export function MysteryPicker({
   const base = `/${slug}/${token}/chapelet`
   return (
     <div className="flex flex-col gap-3">
-      <p className="text-sm text-white/50 mb-2">Quelle famille de mystères voulez-vous prier ?</p>
+      <p className="text-xs uppercase tracking-widest text-[var(--text-muted)] mb-2">Choisir les mystères</p>
       {MYSTERY_TYPES.map(({ key, label, subtitle, days, icon }) => {
         const isToday = key === todayType
         return (
           <Link
             key={key}
             href={`${base}/${key}`}
-            className={`flex items-center justify-between rounded-xl border p-4 transition-colors ${
+            className={`flex items-center justify-between p-4 border border-l-[3px] rounded-[0_10px_10px_0] transition-colors ${
               isToday
-                ? 'border-violet-500 bg-violet-950/30 text-violet-200'
-                : 'border-white/10 bg-white/5 hover:bg-white/10'
+                ? 'bg-[var(--bg-muted)] border-[var(--accent)] border-l-[var(--accent)]'
+                : 'bg-[var(--bg-card)] border-[var(--border)] border-l-[var(--liturgy)] hover:bg-[var(--bg-subtle)]'
             }`}
           >
             <div className="flex items-center gap-4">
               <span className="text-2xl">{icon}</span>
               <div>
-                <div className={`font-medium ${isToday ? 'text-violet-300' : ''}`}>{label}</div>
-                <div className="text-xs text-white/40">{subtitle} — {days}</div>
+                <div className="font-serif font-medium text-[var(--text)]">{label}</div>
+                <div className="text-xs text-[var(--text-muted)] mt-0.5">{subtitle} — {days}</div>
                 {isToday && (
-                  <div className="text-xs text-violet-400 mt-0.5">✦ Aujourd&apos;hui</div>
+                  <div className="text-xs text-[var(--accent)] mt-0.5">Aujourd&apos;hui</div>
                 )}
               </div>
             </div>
-            <span className="text-white/30">›</span>
+            <span className="text-[var(--text-muted)]">›</span>
           </Link>
         )
       })}
