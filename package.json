@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "npx payload migrate && next build",
+    "build": "./node_modules/.bin/tsx migrate-apply.mts && next build",
     "start": "next start",
     "lint": "eslint",
     "test": "jest"
