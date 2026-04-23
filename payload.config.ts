@@ -46,7 +46,9 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   db: postgresAdapter({
-    pool: { connectionString: process.env.DATABASE_URI ?? (() => { throw new Error('DATABASE_URI is required') })() },
+    pool: { 
+    // On accepte les variables générées par Vercel/Neon en plus de la tienne
+    connectionString: process.env.DATABASE_URI || process.env.POSTGRES_URL || process.env.DATABASE_URL || (() => { throw new Error('Database connection string is required') })() },
   }),
   sharp,
 })
