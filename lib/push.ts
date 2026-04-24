@@ -31,7 +31,8 @@ export async function sendPushToBrique(briqueId: string | number) {
     if (!godchild.push_subscription) continue
     try {
       await webpush.sendNotification(
-        godchild.push_subscription as Parameters<typeof webpush.sendNotification>[0],
+        // On passe par 'unknown' avant de caster vers le type attendu
+        (godchild.push_subscription as unknown) as Parameters<typeof webpush.sendNotification>[0],
         JSON.stringify({
           title: 'Sainteté',
           body: brique.title,
