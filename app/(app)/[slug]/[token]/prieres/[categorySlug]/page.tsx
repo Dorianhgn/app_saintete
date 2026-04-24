@@ -3,7 +3,7 @@ import { resolveGodchild } from '@/lib/auth'
 import { getPayloadClient } from '@/lib/payload'
 import { PrayerItem } from '@/components/PrayerItem'
 import Link from 'next/link'
-import type { Prayer } from '@/payload-types'
+import type { Prayer, PrayerCategory } from '@/payload-types'
 
 export default async function CategoryPrayersPage({
   params,
@@ -23,7 +23,7 @@ export default async function CategoryPrayersPage({
   })
 
   if (!categoryResult.docs.length) notFound()
-  const category = categoryResult.docs[0] as { id: string; name: string; slug: string }
+  const category = categoryResult.docs[0] as PrayerCategory
 
   const prayersResult = await payload.find({
     collection: 'prayers',

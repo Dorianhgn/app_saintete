@@ -18,6 +18,17 @@ npm run dev
 
 App: `http://localhost:3000` — Admin: `http://localhost:3000/admin`
 
+## Quick migration
+
+Use this when you change a Payload collection or field.
+
+```bash
+npx payload migrate:create
+npx payload migrate
+```
+
+Commit the generated `migrations/` folder. On Vercel, the production build should run `payload migrate && next build` so schema changes are applied before the app is compiled.
+
 ## Docs
 
 Full documentation at **[dorianhgn.github.io/app_saintete](https://dorianhgn.github.io/app_saintete)**

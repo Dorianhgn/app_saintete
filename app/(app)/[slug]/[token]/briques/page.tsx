@@ -42,7 +42,7 @@ export default async function BriquesPage({
 
   const readMap = new Map(
     (feedbackResult.docs as Feedback[]).map(f => [
-      typeof f.brique === 'object' && f.brique !== null ? (f.brique as { id: string | number }).id : f.brique,
+      typeof f.brique === 'object' && f.brique !== null ? (f.brique as Brique).id : f.brique,
       f.read_at,
     ])
   )

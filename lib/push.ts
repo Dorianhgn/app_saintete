@@ -1,5 +1,6 @@
 import webpush from 'web-push'
 import type { Where } from 'payload'
+import type { Godchild } from '@/payload-types'
 import { getPayloadClient } from './payload'
 
 webpush.setVapidDetails(
@@ -14,7 +15,7 @@ export async function sendPushToBrique(briqueId: string | number) {
   const brique = await payload.findByID({ collection: 'briques', id: briqueId })
 
   const targetId = brique.target
-    ? (typeof brique.target === 'object' ? (brique.target as { id: string | number }).id : brique.target)
+    ? (typeof brique.target === 'object' ? (brique.target as Godchild).id : brique.target)
     : null
   const where: Where = targetId != null
     ? { id: { equals: targetId } }

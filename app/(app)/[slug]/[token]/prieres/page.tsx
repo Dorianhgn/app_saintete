@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { resolveGodchild } from '@/lib/auth'
 import { getPayloadClient } from '@/lib/payload'
 import Link from 'next/link'
+import type { PrayerCategory } from '@/payload-types'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { appConverters } from '@/lib/richTextConverters'
 
@@ -22,7 +23,7 @@ export default async function PrieresPage({
   ])
 
   const config = configResult
-  const categories = categoriesResult.docs as Array<{ id: string; name: string; slug: string }>
+  const categories = categoriesResult.docs as PrayerCategory[]
 
   const counts = await Promise.all(
     categories.map((cat) =>
