@@ -12,6 +12,7 @@ import { Briques } from './collections/Briques.ts'
 import { Feedback } from './collections/Feedback.ts'
 import { PrayerCategories } from './collections/PrayerCategories.ts'
 import { PrayerPageConfig } from './globals/PrayerPageConfig.ts'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -28,9 +29,7 @@ export default buildConfig({
     PrayerCategories,
     {
       slug: 'media',
-      upload: {
-        staticDir: path.resolve(dirname, 'media'),
-      },
+      upload: true,
       fields: [{ name: 'alt', type: 'text' }],
     },
     {
@@ -38,6 +37,16 @@ export default buildConfig({
       auth: true,
       fields: [],
     },
+  ],
+  plugins: [
+    vercelBlobStorage({
+      enabled: true, // On l'active
+      collections: {
+        media: true, // On cible la collection 'media'
+      },
+      // Le token récupéré via la variable d'env de Vercel
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
   ],
   globals: [PrayerPageConfig],
   editor: lexicalEditor(),
