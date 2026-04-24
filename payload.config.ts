@@ -41,6 +41,7 @@ export default buildConfig({
   plugins: [
     vercelBlobStorage({
       enabled: true, // On l'active
+      clientUploads: true, // bypass de la limite Vercel
       collections: {
         media: true, // On cible la collection 'media'
       },
