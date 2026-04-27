@@ -17,3 +17,8 @@ body {
   color: var(--text);
   font-family: 'Cormorant Garamond', Georgia, serif;
 }
+
+h6 {
+  color: var(--accent);
+  font-style: italic;
+}

@@ -7,8 +7,8 @@ const LITURGY_COLORS: Record<string, string> = {
   violet: '#6B3FA0',
   vert: '#2E7D32',
   rouge: '#B71C1C',
-  or: '#F9A825',
-  blanc: '#AAAAAA',
+  or: '#EFBF04',
+  blanc: '#F7EF8A',
 }
 
 export default async function GodchildLayout({

@@ -46,7 +46,7 @@ export function MysteryAccordion({
           <div className="font-medium text-[var(--text)]">
             {index}. {mystery.name}
           </div>
-          <div className="text-xs text-[var(--text-muted)] mt-0.5">Fruit : {mystery.fruit}</div>
+          <div className="text-xs text-[var(--text-muted)] mt-0.5">Fruit du mystère : {mystery.fruit}</div>
         </div>
         <span className="text-[var(--text-muted)] ml-4">{open ? '▼' : '›'}</span>
       </button>
