@@ -745,6 +745,22 @@ export interface PrayerPageConfig {
     };
     [k: string]: unknown;
   } | null;
+  chapelet_catechese_title?: string | null;
+  chapelet_catechese_content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -756,6 +772,8 @@ export interface PrayerPageConfigSelect<T extends boolean = true> {
   intro_text?: T;
   catechese_title?: T;
   catechese_content?: T;
+  chapelet_catechese_title?: T;
+  chapelet_catechese_content?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -6,5 +6,7 @@ export const PrayerPageConfig: GlobalConfig = {
     { name: 'intro_text', type: 'richText' },
     { name: 'catechese_title', type: 'text', defaultValue: "Qu'est-ce que la prière ?" },
     { name: 'catechese_content', type: 'richText' },
+    { name: 'chapelet_catechese_title', type: 'text', defaultValue: 'Comment prier le chapelet' },
+    { name: 'chapelet_catechese_content', type: 'richText' },
   ],
 }

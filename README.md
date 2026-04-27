@@ -18,16 +18,39 @@ npm run dev
 
 App: `http://localhost:3000` — Admin: `http://localhost:3000/admin`
 
-## Quick migration
+## Quick migration (schema changes)
 
-Use this when you change a Payload collection or field.
+Use this whenever you change a Payload collection, global, or field.
+
+1. Generate migration files from your schema diff:
 
 ```bash
-npx payload migrate:create
-npx payload migrate
+npm run migrate:create -- add-short-name
+# equivalent: npx payload migrate:create add-short-name
 ```
 
-Commit the generated `migrations/` folder. On Vercel, the production build should run `payload migrate && next build` so schema changes are applied before the app is compiled.
+2. Apply pending migrations locally:
+
+```bash
+npm run migrate
+# equivalent: npx payload migrate
+```
+
+3. Commit the schema artifacts:
+- `migrations/*.ts`
+- `migrations/*.json`
+- `migrations/index.ts` (if updated)
+- `payload-types.ts` (if regenerated)
+
+Why two commands:
+- `migrate:create` creates versioned migration files.
+- `migrate` applies pending migration files to the database.
+
+Common mistake:
+- `npm run payload migrate:refresh` fails in this repo because `migrate:refresh` is not a defined npm script.
+- Use `npm run migrate:create -- <name>` and `npm run migrate` instead.
+
+On Vercel, the production build should run `payload migrate && next build` so schema changes are applied before the app is compiled.
 
 ## Docs
 

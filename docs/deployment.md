@@ -10,6 +10,16 @@ payload migrate && next build
 
 If the migration fails, the build fails and Vercel will not deploy a broken release.
 
+For local development, use the repo scripts:
+
+```bash
+npm run migrate:create -- add-short-name
+npm run migrate
+```
+
+`migrate:create` generates migration files from schema changes.
+`migrate` applies pending migration files to your database.
+
 ---
 
 ## Services
@@ -61,7 +71,8 @@ Set these in Vercel → Project → Settings → Environment Variables.
 2. Use the **Vercel integration** for automatic `DATABASE_URI` injection, or copy the connection string manually
 3. Use the **pooled** connection string (port 6543) for serverless functions
 
-Payload runs migrations automatically on first boot — no manual `migrate` step needed.
+In this project, migrations are applied by the build command (`payload migrate && next build`).
+For local verification, run `npm run migrate` manually before pushing.
 
 ## First migration workflow
 
@@ -80,9 +91,13 @@ From that point on, every Vercel build runs `payload migrate && next build`, so 
 Whenever you change a collection or field:
 
 1. Update the Payload config.
-2. Run `npx payload migrate:create <name>` to generate a new migration.
-3. Run `npx payload migrate` locally to test the change.
+2. Run `npm run migrate:create -- <name>` to generate a new migration.
+3. Run `npm run migrate` locally to test the change.
 4. Commit both the code change and the new migration files.
+
+Common mistake:
+- `npm run payload migrate:refresh` fails here because `migrate:refresh` is not defined in `package.json`.
+- Use `npm run migrate:create -- <name>` and `npm run migrate`.
 
 Do not add `migrations/` to `.gitignore`. That folder is part of the schema history.
 
