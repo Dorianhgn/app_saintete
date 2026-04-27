@@ -1,0 +1,973 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://dorianhgn.github.io/app_saintete/superpowers/specs/2026-04-11-saintete-design/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Sainteté — Design Spec - Sainteté — Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#saintete-design-spec" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Sainteté — Docs" class="md-header__button md-logo" aria-label="Sainteté — Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Sainteté — Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sainteté — Design Spec
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Dorianhgn/app_saintete" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Dorianhgn/app_saintete
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Sainteté — Docs" class="md-nav__button md-logo" aria-label="Sainteté — Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Sainteté — Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Dorianhgn/app_saintete" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Dorianhgn/app_saintete
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../content-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Content management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stack
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#url-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        URL Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-model-payload-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Model (Payload Collections)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Model (Payload Collections)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#godchildren" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Godchildren
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saints
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prayers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prayers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mysteries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mysteries
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#briques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Briques
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Feedback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#page-designs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Page Designs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Page Designs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dashboard-slugtoken" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dashboard (/[slug]/[token])
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chapelet-slugtokenchapelet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chapelet (/[slug]/[token]/chapelet)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prieres-slugtokenprieres" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prières (/[slug]/[token]/prieres)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#saint-patron-slugtokensaint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Saint Patron (/[slug]/[token]/saint)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#briques-archive-slugtokenbriques" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Briques archive (/[slug]/[token]/briques)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pwa-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PWA Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-migration-from-recueilmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content Migration from recueil.md
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#design-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design System
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#future-1-year-horizon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Future (1-year horizon)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#out-of-scope-mvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of Scope (MVP)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="saintete-design-spec">Sainteté — Design Spec</h1>
+<p><em>2026-04-11</em></p>
+<h2 id="overview">Overview</h2>
+<p>A Progressive Web App for spiritual accompaniment between a godfather and his godchildren. The godfather curates content (prayers, rosary meditations, "briques" spirituelles) via an admin panel. Each godchild gets a private, personalized URL — no login required.</p>
+<hr />
+<h2 id="stack">Stack</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Choice</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Framework</td>
+<td>Next.js 15 App Router</td>
+<td>SSR, dynamic routing, PWA-ready</td>
+</tr>
+<tr>
+<td>CMS</td>
+<td>Payload CMS v3</td>
+<td>Runs inside Next.js — single Vercel deployment, no Railway</td>
+</tr>
+<tr>
+<td>Database</td>
+<td>Neon Postgres</td>
+<td>Free tier, native Vercel integration</td>
+</tr>
+<tr>
+<td>File storage</td>
+<td>Vercel Blob</td>
+<td>Audio topos, saint images</td>
+</tr>
+<tr>
+<td>Hosting</td>
+<td>Vercel</td>
+<td>Auto-deploy on git push</td>
+</tr>
+<tr>
+<td>PWA</td>
+<td><code>@ducanh2912/next-pwa</code></td>
+<td>Service worker, manifest, Web Push</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Single deployment.</strong> No separate CMS server, no Railway bill.</p>
+<hr />
+<h2 id="authentication">Authentication</h2>
+<p>No login system. Each godchild has a <strong>secret token</strong> embedded in their URL:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>saintetee.app/martin/abc123xyz
+</code></pre></div>
+<ul>
+<li>Token validated server-side on every request (Next.js middleware)</li>
+<li>Invalid or missing token → 404 (not a redirect, to avoid enumeration)</li>
+<li>To revoke access: change the token in Payload admin</li>
+<li>Token should be ~16 chars, URL-safe random string</li>
+</ul>
+<hr />
+<h2 id="url-structure">URL Structure</h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/[slug]/[token]                → Dashboard
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>/[slug]/[token]/chapelet       → Rosary
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>/[slug]/[token]/prieres        → Prayer library
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>/[slug]/[token]/saint          → Patron saint page
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>/[slug]/[token]/briques        → All briques (archive)
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>/admin                         → Payload admin (godfather only)
+</code></pre></div>
+<hr />
+<h2 id="data-model-payload-collections">Data Model (Payload Collections)</h2>
+<h3 id="godchildren">Godchildren</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>name              text
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>slug              text              e.g. &quot;martin&quot;
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>token             text              secret, URL-safe, 16 chars — auto-generated in
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>                                    Payload beforeChange hook via crypto.randomBytes(12).toString(&#39;hex&#39;)
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>                                    shown read-only in admin after creation
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>patron_saint      relation → Saints
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>theme_color       select            violet | vert | blanc | rouge | or (liturgical)
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>active            boolean
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>allowed_sources   text[]            source_keys this godchild can see in the rosary
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>                                    set manually in admin, no defaults
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>push_subscription jsonb (optional)  Web Push subscription object, written client-side on opt-in
+</code></pre></div>
+<h3 id="saints">Saints</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>name        text
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>slug        text
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>feast_day   text (MM-DD)
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>description rich text
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>image       upload (Blob)
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>prayers     relation[] → Prayers
+</code></pre></div>
+<h3 id="prayers">Prayers</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>title     text
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>content   rich text
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>category  select: base | chapelet | angelus | intercession | litanie
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>tags      text[]
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>audio     upload (Blob, optional)
+</code></pre></div>
+<h3 id="mysteries">Mysteries</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>name           text
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>mystery_type   select: joyeux | douloureux | glorieux | lumineux
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>order          number (1–5)
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>fruit          text
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>introduction   rich text    (shown before the 5 accordions — e.g. the JP2 quote for Douloureux)
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>days           text[]       e.g. [&quot;mardi&quot;, &quot;vendredi&quot;] — for mystery-of-the-day highlight
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>readings       component[]:
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>  source_key   text         e.g. &quot;st-luc&quot;, &quot;st-marc&quot;, &quot;sainte-rita&quot;
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>  source_label text         display name
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>  content      rich text
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>audio_meditation  upload (Blob, optional)
+</code></pre></div>
+<h3 id="briques">Briques</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>title          text
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>content        rich text
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>type           select: text | audio
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>audio_file     upload (Blob, optional)
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>target         relation → Godchildren | null (null = all)
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>scheduled_date date (optional)
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>published      boolean
+</code></pre></div>
+<h3 id="feedback">Feedback</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>brique      relation → Briques
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>godchild    relation → Godchildren
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>reaction    select: 🙏 | ❤️ | ✝️
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>message     text (optional)
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>read_at     timestamp — written via POST /api/feedback/read when brique page mounts (client-side, fire-and-forget)
+</code></pre></div>
+<hr />
+<h2 id="page-designs">Page Designs</h2>
+<h3 id="dashboard-slugtoken">Dashboard (<code>/[slug]/[token]</code>)</h3>
+<p>Brique-first layout:</p>
+<ol>
+<li><strong>Latest published brique</strong> — full-width card, large readable text. If type=audio: inline audio player.</li>
+<li><strong>Reaction strip</strong> — three emoji buttons (🙏 ❤️ ✝️). Tap writes to Feedback collection. One reaction per brique.</li>
+<li><strong>Navigation grid</strong> — 3 icon cards: Chapelet · Prières · Saint [Patron Name]</li>
+<li><strong>Briques archive link</strong> — small, below the grid</li>
+</ol>
+<p>If no brique is published yet: show a welcome message with the patron saint's name.</p>
+<h3 id="chapelet-slugtokenchapelet">Chapelet (<code>/[slug]/[token]/chapelet</code>)</h3>
+<ol>
+<li><strong>Mystery picker</strong> — list of 4 mystery types with icon + days. Today's mystery highlighted in accent color (computed from <code>days</code> field vs current day of week). User can pick any.</li>
+<li><strong>Mystery type page</strong>:</li>
+<li>Introduction text (rich text, from <code>introduction</code> field)</li>
+<li>5 accordions, one per mystery</li>
+<li>Each accordion header: mystery name + fruit</li>
+<li>Expanded: reading picker — only shows readings where <code>source_key ∈ godchild.allowed_sources</code></li>
+<li>Selected reading: expands inline below the picker</li>
+<li>Optional: audio meditation player if <code>audio_meditation</code> is set</li>
+<li><strong>Progress</strong>: stored in <code>localStorage</code> keyed by <code>[slug]-[mystery_type]-[date]</code>. No DB writes for reading state.</li>
+</ol>
+<h3 id="prieres-slugtokenprieres">Prières (<code>/[slug]/[token]/prieres</code>)</h3>
+<p>Grouped by category (base, chapelet, angelus, intercession, litanie). Each prayer title is tappable → expands inline. Audio player shown if prayer has an audio file.</p>
+<h3 id="saint-patron-slugtokensaint">Saint Patron (<code>/[slug]/[token]/saint</code>)</h3>
+<p>Saint image, name, feast day, description, list of linked prayers. If today is the feast day: banner highlight.</p>
+<h3 id="briques-archive-slugtokenbriques">Briques archive (<code>/[slug]/[token]/briques</code>)</h3>
+<p>Reverse-chronological list of all published briques targeted at this godchild (or "all"). Unread shown with a dot indicator. Read state tracked via Feedback <code>read_at</code>.</p>
+<hr />
+<h2 id="pwa-setup">PWA Setup</h2>
+<ul>
+<li><code>manifest.json</code>: name, icons (cross or saint icon), <code>display: standalone</code>, <code>theme_color</code> per godchild (via dynamic manifest route)</li>
+<li>Service worker: offline cache for prayers and last-viewed brique</li>
+<li>Web Push: notify on new published brique targeted at the godchild</li>
+<li>iOS 16.4+ required for push on Safari</li>
+<li>Permission prompt shown after first visit to dashboard</li>
+<li>Push subscription stored in Godchildren collection (<code>push_subscription</code> JSON field)</li>
+</ul>
+<hr />
+<h2 id="content-migration-from-recueilmd">Content Migration from recueil.md</h2>
+<p>All content in <code>recueil.md</code> maps to Payload collections:</p>
+<table>
+<thead>
+<tr>
+<th>recueil.md section</th>
+<th>Collection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Prières du Chrétien (Actes, Angelus…)</td>
+<td>Prayers (category: base)</td>
+</tr>
+<tr>
+<td>Le Chapelet — 4 mystery types + 20 mysteries</td>
+<td>Mysteries</td>
+</tr>
+<tr>
+<td>La Prière de Jésus</td>
+<td>Prayers (category: base)</td>
+</tr>
+<tr>
+<td>Per-mystery intro texts</td>
+<td>Mysteries.introduction</td>
+</tr>
+</tbody>
+</table>
+<p>Seeded manually via Payload admin. No automated import script needed for MVP (content is finite and structured).</p>
+<hr />
+<h2 id="design-system">Design System</h2>
+<ul>
+<li><strong>Dark mode by default</strong> — essential for evening/morning prayer</li>
+<li><strong>Liturgical accent colors</strong> per godchild (set via <code>theme_color</code>):</li>
+<li>Violet — Avent/Carême</li>
+<li>Blanc — fêtes, Pâques</li>
+<li>Vert — temps ordinaire</li>
+<li>Rouge — martyrs, Pentecôte</li>
+<li>Or — solennités</li>
+<li><strong>Typography</strong>: serif for prayer content (Georgia or similar), sans-serif for UI chrome</li>
+<li><strong>No distractions</strong>: no infinite scroll, no push for engagement, no ads. Single-purpose screens.</li>
+</ul>
+<hr />
+<h2 id="future-1-year-horizon">Future (1-year horizon)</h2>
+<p>When opening to anyone:
+- Add email/magic-link auth (Payload has built-in auth)
+- Replace hardcoded godchild profiles with self-serve registration
+- Add godfather → godchild pairing flow
+- <code>allowed_sources</code> becomes user-configurable preference
+- The private URL token model can coexist with auth (token becomes optional for registered users)</p>
+<p>No architectural changes needed — Payload and Next.js scale to this naturally.</p>
+<hr />
+<h2 id="out-of-scope-mvp">Out of Scope (MVP)</h2>
+<ul>
+<li>Automated liturgical calendar sync</li>
+<li>In-app messaging / chat</li>
+<li>Social features between godchildren</li>
+<li>iOS native app</li>
+<li>Localization (French only)</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.sections", "navigation.top", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
